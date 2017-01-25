@@ -23,7 +23,7 @@ export class Daily extends Component{
       <View style={{flex: 1,backgroundColor: '#0A091D'}}>
         <TopSection />
         <View style={{flex: 2}}>
-          <ListView ref='ref' dataSource={this.state.dataSource} renderRow={(rowData, sectionID, rowIndex) => <ListViewRow type={"DailyRow"} rowIndex={rowIndex} rowData={rowData} />} />
+          <ListView dataSource={this.state.dataSource} renderRow={(rowData, sectionID, rowIndex) => <ListViewRow type={"DailyRow"} rowIndex={rowIndex} rowData={rowData} />} />
         </View>
       </View>
     );

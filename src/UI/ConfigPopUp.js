@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import {View, Text, TouchableHighlight, StyleSheet, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import {DropDown} from './DropDown';
 
 export class ConfigPopUp extends Component {
   constructor (props) {
@@ -34,6 +34,7 @@ export class ConfigPopUp extends Component {
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB'}}>Location</Text>
+              <DropDown />
             </View>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB'}}>Temperature</Text>
