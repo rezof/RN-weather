@@ -15,7 +15,6 @@ export class TopSection extends Component {
   }
   measureHeader = () => {
     this.refs.ref.measure((ox, oy, width, height, pageX, pageY) => {
-      console.log(ox, oy, width, height, pageX, pageY)
     });
   }
   render () {
