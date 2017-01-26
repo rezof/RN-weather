@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactNative from 'react-native';
-const {
+import {
   StyleSheet,
   Text,
   View,
   Animated,
   TouchableHighlight
-} = ReactNative;
+} from 'react-native';
 import {Button} from './Button';
 
 import Icon from 'react-native-vector-icons/Ionicons';
