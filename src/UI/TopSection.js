@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Image, StyleSheet, Dimensions, findNodeHandle} from 'react-native';
 
 import Gradient from 'react-native-linear-gradient';
-import {IcoMoon} from './../UI'
+import {IcoMoon} from './'
 import {UIManager as RCTUIManager} from 'NativeModules';
 
 const {width, height} = Dimensions.get('window');

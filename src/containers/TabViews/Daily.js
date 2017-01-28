@@ -8,7 +8,7 @@ import {
   StyleSheet,
   findNodeHandle
 } from 'react-native';
-import {TopSection, ListViewRow} from './../../UI';
+import {TopSection, ListViewRow} from './../../ui';
 import {data} from './../../resources/data.js';
 
 export class Daily extends Component{

@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
-import {TabView} from './src';
+import TabView from './src';
 
 export default class weather extends Component {
   render() {

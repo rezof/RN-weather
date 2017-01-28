@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, ListView} from 'react-native';
 import {data} from './../../resources/data.js';
-import {ListViewRow, TopSection} from './../../UI';
+import {ListViewRow, TopSection} from './../../ui';
 
 export class Hourly extends Component{
   constructor () {

@@ -5,9 +5,9 @@ import {
   Text,
   View
 } from 'react-native';
-import {TabView} from './src';
+import TabView from './src';
 
-export default class weather extends Component {
+export default class Weather extends Component {
   render() {
     return (
         <TabView />
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
 
 });
 
-AppRegistry.registerComponent('weather', () => weather);
+AppRegistry.registerComponent('weather', () => Weather);

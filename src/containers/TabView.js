@@ -9,7 +9,7 @@ import {
   StyleSheet
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import {CustomTabBar, ConfigPopUp} from './../UI';
+import {CustomTabBar, ConfigPopUp} from './../ui';
 import {Hourly, Daily} from './TabViews';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -26,6 +26,7 @@ export class TabView extends Component {
     const CustomTabBar_ = (
       <CustomTabBar
         style={{ backgroundColor: '#131020', marginBottom: -1 }}
+        ref="CustomTabBar"
         underlineStyle={{ backgroundColor: '#5BFFE3' }}
         inactiveTextColor={"#84809D"}
         activeTextColor={"#fff"}

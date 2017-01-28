@@ -33,11 +33,20 @@ export class ConfigPopUp extends Component {
         <Animated.View style={{position: 'absolute', bottom: 55, height: transitionHeight, width, backgroundColor:'black'}} >
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB'}}>Location</Text>
-              <DropDown />
+              <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB',}}>Location</Text>
+              </View>
+              <View style={{flex: 1}}>
+                <DropDown data={['row 1', 'row 2']}/>
+              </View>
             </View>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB'}}>Temperature</Text>
+              <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB'}}>Temperature</Text>
+              </View>
+              <View style={{flex: 1}}>
+                <DropDown data={['Celsius', 'Fahrenheit']}/>
+              </View>
               <View style={{position: 'absolute', top: 10, right: 15}}>
                 <TouchableHighlight onPress={() => this.props.closePopUp()}>
                   <Icon name="ios-close" style={[Styles.TextDefault, {fontSize: 28}]} />
@@ -49,6 +58,7 @@ export class ConfigPopUp extends Component {
       </View>
     )
   }
+
 }
 
 const Styles = StyleSheet.create({
