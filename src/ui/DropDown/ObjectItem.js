@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity ,StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity ,StyleSheet, Platform} from 'react-native';
 
 export class ObjectItem extends Component{
   render() {
-    console.log('object')
+    let selected;
+    if(this.props.isSelected){
+      selected = Styles.selected;
+    }
     return (
-      <TouchableOpacity onPress={pressHandler} style={[Styles.container, this.props.style]}>
+      <TouchableOpacity onPress={this.pressHandler} style={[Styles.container, this.props.style, {backgroundColor: 'red'}]}>
         <View style={Styles.textContainer}>
-          <Text style={Styles.textDefault}>{this.props.data.text}</Text>
-        </View>
-        <View style={Styles.iconContainer}>
-          <Text style={Styles.textDefault}>
-            √
-          </Text>
+          <Text style={[Styles.textDefault, selected]}>{this.props.data.text}</Text>
         </View>
       </TouchableOpacity>
     )
@@ -24,16 +22,29 @@ export class ObjectItem extends Component{
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row',
+    paddingRight: 5,
+    paddingLeft: 5,
   },
   textContainer: {
-    flex: 3
+    flex : 1,
+    borderBottomWidth: 1/2,
+    borderBottomColor: 'lightgrey',
+    borderStyle: 'solid',
   },
-  iconContainer: {
-    flex: 1
+  textDefault: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 18,
+    ...Platform.select({
+      ios: {
+        backgroundColor: 'transparent',
+        color: 'white',
+      },
+    })
   },
-  textDefault:{
-    backgroundColor: 'transparent',
-    color: 'red'
+  selected: {
+    fontWeight: "bold",
   }
 })

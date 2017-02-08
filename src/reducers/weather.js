@@ -1,13 +1,14 @@
 import * as types from './types';
 
-export const weather = (state = [], {type, payload}) => {
+export const weather = (state = {data: {}}, {type, payload}) => {
   switch (type){
-    case types.USER_UPDATE_WEATHER_REQUEST :
-      console.log('USER_UPDATE_WEATHER_REQUEST')
-      return state;
-    case types.FETCH_WEATHER :
-      console.log('FETCH_WEATHER')
-      return state;
+    case types.LOAD_DATA :
+      const data = payload.weather || {};
+      return {data: {...state.data, ...data}};
+    case types.FILTER_WEATHER_COMPLETE :
+      return {data: {...payload}};
+    case types.UPDATE_CITY_WEATHER_COMPLETE :
+      return {data: {...state.data, ...payload}};
     default:
       return state;
   }

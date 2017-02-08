@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
 import {View, ListView} from 'react-native';
-import {data} from './../../resources/data.js';
-import {ListViewRow, TopSection} from './../../ui';
+// import {data} from './../../resources/data.js';
+import {WeatherListViewRow, TopSection} from './../../ui';
 
 export class Hourly extends Component{
   constructor () {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = { dataSource: ds.cloneWithRows(data.hourly.data), };
+    this.state = { ds };
   }
+
   render () {
+    let {ds} = this.state;
+    const dataSource = ds.cloneWithRows(this.props.data)
     return (
         <View style={{flex: 1, backgroundColor: '#0A091D'}}>
           <TopSection />
           <View style={{flex: 2}}>
-            <ListView dataSource={this.state.dataSource} renderRow={(rowData, sectionID, rowIndex) => <ListViewRow type={"HourlyRow"} rowIndex={rowIndex} rowData={rowData} />} />
+            <ListView
+              enableEmptySections
+              dataSource={dataSource}
+              renderRow={(rowData, sectionID, rowIndex) => <WeatherListViewRow type={"HourlyRow"} rowIndex={rowIndex} rowData={rowData} />} />
           </View>
         </View>
     )

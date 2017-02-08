@@ -16,6 +16,7 @@ export class ListView_ extends Component {
     };
   }
   render() {
+    setTimeout(this.measureDropdown);
     return (
       <ListView
         ref="dropdown"
@@ -26,15 +27,16 @@ export class ListView_ extends Component {
     )
   }
   // componentWillMount() {
-  //     setTimeout(this.measureDropdown);
+  //
   // }
-  // measureDropdown = () => {
-  //   // dropdown = this.refs['dropdown'];
-  //   // const handle = findNodeHandle(dropdown);
-  //   // UIManager.measure(handle, (x, y, width, height, pageX, PageY) => {
-  //   //   this.setState({dropDownWidth: width, dropDownHeight: height});
-  //   // })
-  // }
+  measureDropdown = () => {
+    dropdown = this.refs['dropdown'];
+    const handle = findNodeHandle(dropdown);
+    UIManager.measure(handle, (x, y, width, height, pageX, PageY) => {
+      // this.setState({dropDownWidth: width, dropDownHeight: height});
+      console.log(x, y, width, height, pageX, PageY);
+    })
+  }
 }
 
 const {width} = Dimensions.get('window')
@@ -47,7 +49,9 @@ const Styles = StyleSheet.create({
   absolute:{
     position: 'absolute',
     width: _width,
-    backgroundColor: 'black',
+    top: 0,
+    left: 20,
+    backgroundColor: 'red',
     maxHeight: 100,
     left: (width/2 - (_width))/2
   }

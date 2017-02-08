@@ -7,6 +7,7 @@ export class TextItem extends Component{
     if(this.props.isSelected){
       selected = Styles.selected
     }
+    console.log(this.props.data);
     return (
       <TouchableOpacity onPress={this.pressHandler} style={[Styles.container, this.props.style, ]}>
         <View style={Styles.textContainer}>

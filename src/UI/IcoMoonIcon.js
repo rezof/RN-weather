@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
-import icoMoonConfig from './../resources/config.json';
+import icoMoonConfig from './../resources/icoMoon.json';
 const Icon = createIconSetFromIcoMoon(icoMoonConfig);
 
 

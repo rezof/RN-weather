@@ -1,8 +1,6 @@
 package com.weather;
 
 import com.facebook.react.ReactActivity;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 
 public class MainActivity extends ReactActivity {
 
