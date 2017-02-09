@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListView, View, Text, StyleSheet, Dimensions, findNodeHandle} from 'react-native';
+import {ListView, View, Text, StyleSheet, Dimensions, findNodeHandle, Platform} from 'react-native';
 import {DropDownItem} from './DropDownItem';
 import {UIManager} from 'NativeModules';
 
@@ -19,6 +19,7 @@ export class ListView_ extends Component {
     setTimeout(this.measureDropdown);
     return (
       <ListView
+        style={{width: 200, height: 200}}
         ref="dropdown"
         style={[Styles.absolute, ]}
         dataSource={this.state.dataSource}
@@ -39,7 +40,7 @@ export class ListView_ extends Component {
   }
 }
 
-const {width} = Dimensions.get('window')
+const {width, height} = Dimensions.get('window')
 if(width > 400){
   _width = 200
 }else{
@@ -49,10 +50,7 @@ const Styles = StyleSheet.create({
   absolute:{
     position: 'absolute',
     width: _width,
-    top: 0,
-    left: 20,
-    backgroundColor: 'red',
-    maxHeight: 100,
-    left: (width/2 - (_width))/2
+    height: 100,
+    left: (width/2 - (_width))/2,
   }
 })

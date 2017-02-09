@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ListView, TouchableOpacity, StyleSheet, Dimensions, findNodeHandle} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Dimensions, findNodeHandle} from 'react-native';
 import {ListView_} from './ListView';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -43,7 +43,7 @@ const Styles = StyleSheet.create({
   container:{
     marginTop: 5,
     width: width/2,
-    position: 'relative',
+    minHeight: 200,
   },
   textDefault:{
     backgroundColor: 'transparent',
