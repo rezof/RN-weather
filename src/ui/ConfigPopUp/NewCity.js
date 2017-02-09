@@ -17,7 +17,7 @@ export class _NewCity extends Component {
       <View style={{position: 'absolute', backgroundColor: 'rgba(0, 0, 0, 0.5)', top: 20, left: 0, right: 0, bottom: 0}}>
         <View style={{flex:1, flexDirection: 'row', paddingBottom: 0, backgroundColor: 'black'}}>
           <View style={{flex: 5, paddingTop: 10, paddingLeft: 10}}>
-            <TextInput style={{color: 'black', height: 40, backgroundColor: 'white', paddingLeft: 15, borderRadius: 20}} placeholder="city name" value={this.props.searchTerm} onChangeText={this.handleSearchTermChange} />
+            <TextInput underlineColorAndroid="transparent" style={{color: 'black', height: 40, backgroundColor: 'white', paddingLeft: 15, borderRadius: 20}} placeholder="city name" value={this.props.searchTerm} onChangeText={this.handleSearchTermChange} />
           </View>
           <TouchableOpacity style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} onPress={() => this.props.cancel()}>
             <Text style={{color: 'white'}}>close</Text>

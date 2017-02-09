@@ -38,13 +38,13 @@ export class _TabView extends Component {
         console.log('updating');
         this.props.updateWeatherData(data);
       }
-    }, 3000)
+    }, 3000);
   }
 
   render() {
     const CustomTabBar_ = (
       <CustomTabBar
-        style={{ backgroundColor: '#131020', marginBottom: -1 }}
+        style={{ backgroundColor: '#131020', marginBottom: -1, height: 50 }}
         ref="CustomTabBar"
         underlineStyle={{ backgroundColor: '#5BFFE3' }}
         inactiveTextColor={"#84809D"}
