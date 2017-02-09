@@ -8,7 +8,7 @@ export class ObjectItem extends Component{
       selected = Styles.selected;
     }
     return (
-      <TouchableOpacity onPress={this.pressHandler} style={[Styles.container, this.props.style, {backgroundColor: 'red'}]}>
+      <TouchableOpacity onPress={this.pressHandler} style={[Styles.container, this.props.style]}>
         <View style={Styles.textContainer}>
           <Text style={[Styles.textDefault, selected]}>{this.props.data.text}</Text>
         </View>
@@ -23,9 +23,9 @@ export class ObjectItem extends Component{
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     paddingRight: 5,
     paddingLeft: 5,
+    minHeight: 30
   },
   textContainer: {
     flex : 1,
@@ -42,6 +42,9 @@ const Styles = StyleSheet.create({
         backgroundColor: 'transparent',
         color: 'white',
       },
+      android: {
+        color: 'white'
+      }
     })
   },
   selected: {

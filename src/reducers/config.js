@@ -9,7 +9,8 @@ export const config = (state = defaultState, {type, payload}) => {
     case types.LOAD_DATA :
       return {...defaultState, ...payload.config}
     case types.TEMPERATURE_SCALE_CHANGE:
-      let {selectedTemperature} = payload.config;
+      console.log('TEMPERATURE_SCALE_CHANGE', payload)
+      let selectedTemperature = payload;
       return {...state, selectedTemperature};
     default:
       return state;

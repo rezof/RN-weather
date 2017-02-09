@@ -44,7 +44,7 @@ export const loadWeather = () => {
 
 }
 
-const darkskyKey = 'aa332aeb6411cf2b487a71dc083e1b89_';
+const darkskyKey = 'aa332aeb6411cf2b487a71dc083e1b89';
 const fetchCityWeather = ({text, longitude, latitude, value}) => (dispatch) => {
   dispatch(Actions.weatherFetching())
   console.log(`https://api.darksky.net/forecast/${darkskyKey}/${latitude},${longitude}`);
