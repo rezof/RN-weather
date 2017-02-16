@@ -4,8 +4,9 @@ import {types} from './../reducers';
 
 export const dbAPI = {
   saveWeather(weather) {
-    AsyncStorage.mergeItem('weatherApp', JSON.stringify({...weather}), function(msg, err){
-      console.log('saved weather', weather);
+    console.log('saving weather', weather);
+    AsyncStorage.mergeItem('weatherApp', JSON.stringify({weather}), function(msg, err){
+      console.log('saved weather', msg, err);
     })
   },
   saveAllData(data){
