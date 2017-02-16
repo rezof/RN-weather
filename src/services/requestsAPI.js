@@ -54,7 +54,7 @@ const fetchCityWeather = ({text, longitude, latitude, value}) => (dispatch) => {
     let cityData = {}
     cityData[value] = data
     dispatch(Actions.weatherFetchingComplete(cityData))
-    dbAPI.saveWeather({weather: cityData})
+    dbAPI.saveWeather(cityData)
   })
   .catch(err => {
     console.log('error on fetchWeather', err);
@@ -66,12 +66,14 @@ export const CheckCityWeather = (city) =>
     (dispatch, getState) => {
       const {weather} = getState();
       const filteredData = Utils.filterOutDatedData(weather.data);
+      console.log('filtered data', filteredData);
       if(!filteredData[city.value] || (filteredData[city.value].hourly.data.length <= 42) || (filteredData[city.value].daily.data.length < 7)){
         fetchCityWeather(city)(dispatch);
         console.log('fetching');
       }else{
         console.log('updating');
-        dbAPI.saveWeather({weather: filteredData.data});
+        dbAPI.saveWeather(filteredData);
+        dispatch(Actions.WeatherDataFiltered(filteredData));
       }
     }
 

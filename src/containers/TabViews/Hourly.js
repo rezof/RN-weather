@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {View, ListView} from 'react-native';
-// import {data} from './../../resources/data.js';
+import {View, ListView, RefreshControl} from 'react-native';
 import {WeatherListViewRow, TopSection} from './../../ui';
 
 export class Hourly extends Component{
@@ -12,12 +11,19 @@ export class Hourly extends Component{
 
   render () {
     let {ds} = this.state;
+    let {refreshing} = this.props || false;
     const dataSource = ds.cloneWithRows(this.props.data)
     return (
         <View style={{flex: 1, backgroundColor: '#0A091D'}}>
           <TopSection />
           <View style={{flex: 2}}>
             <ListView
+              refreshControl={
+                <RefreshControl
+                  tintColor="transparent"
+                  refreshing={!!refreshing}
+                />
+              }
               enableEmptySections
               dataSource={dataSource}
               renderRow={(rowData, sectionID, rowIndex) => <WeatherListViewRow type={"HourlyRow"} rowIndex={rowIndex} rowData={rowData} />} />

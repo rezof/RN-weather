@@ -9,12 +9,15 @@ export const uiState = (state = defaultState, {type, payload}) => {
     case types.TOGGLE_CITY_MODAL:
       const showCityModal = payload;
       return {...state, showCityModal};
-    case types.UPDATE_WEATHER_FAILED :
-      return {...state, weatherFetchingFailed: true, fetchingWeather: false}
-    case types.UPDATE_WEATHER_COMPLETED :
-      return {...state, weatherFetchingFailed: false, fetchingWeather: false}
-    case types.UPDATE_WEATHER_REQUEST :
-      return {...state, fetchingWeather: true}
+    case types.UPDATE_CITY_WEATHER_FAILED :
+      console.log('UPDATE_WEATHER_FAILED');
+      return {...state, weatherFetchingFailed: true, refreshing: false}
+    case types.UPDATE_CITY_WEATHER_COMPLETE :
+      console.log('UPDATE_WEATHER_COMPLETED');
+      return {...state, weatherFetchingFailed: false, refreshing: false}
+    case types.UPDATE_CITY_WEATHER_REQUEST :
+      console.log('UPDATE_WEATHER_REQUEST');
+      return {...state, weatherFetchingFailed: false, refreshing: true}
     default:
       return state;
   }
