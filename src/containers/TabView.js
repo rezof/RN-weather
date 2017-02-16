@@ -28,15 +28,11 @@ export class _TabView extends Component {
     //
     // }, 60000);
     setTimeout(() => {
-      console.log('this.props.cities', this.props);
       const {currentCity} = this.props.cities;
       const data = Utils.filterOutDatedData(this.props.weather.data);
       if(currentCity && !data[currentCity.value] || (data[currentCity.value].hourly.data.length <= 42) || (data[currentCity.value].daily.data.length < 7)){
         console.log('fetching', currentCity)
         this.props.fetchWeatherForCity(currentCity);
-      }else{
-        console.log('updating');
-        this.props.updateWeatherData(data);
       }
     }, 3000);
   }
@@ -109,6 +105,7 @@ mapActionsToProps = (dispatch) => ({
   },
   updateWeatherData : (data) => {
     dispatch(Actions.WeatherDataFiltered(data));
+    dbAPI.saveWeather(data);
   },
   fetchWeatherForCity : (city) => {
     dispatch(API.fetchCityWeather(city));
