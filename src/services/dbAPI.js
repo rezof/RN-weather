@@ -4,7 +4,6 @@ import {types} from './../reducers';
 
 export const dbAPI = {
   saveWeather(weather) {
-    console.log('saving weather', weather);
     AsyncStorage.mergeItem('weatherApp', JSON.stringify({weather}), function(msg, err){
       console.log('saved weather', msg, err);
     })
@@ -24,6 +23,7 @@ export const dbAPI = {
       AsyncStorage.getItem('weatherApp', function(err, result){
         if(result){
           const data = JSON.parse(result);
+          console.log('loaded data', data);
           dispatch(Actions.loadData(data));
         }else {
           console.log('no data was loaded');

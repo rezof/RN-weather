@@ -12,18 +12,23 @@ export class _Cities extends Component {
           <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB',}}>Location</Text>
         </View>
         <View style={{flex: 1}}>
-          <DropDown data={[...this.props.cities.cities, {text:'add new city', value: -1}]} selected={this.props.cities.currentCity} selectedChanged={this.cityChanged} />
+          <DropDown longPress={this.manageCity} data={[...this.props.cities.cities, {text:'add new city', value: -1}]} selected={this.props.cities.currentCity} selectedChanged={this.cityChanged} />
         </View>
       </View>
     )
   }
   cityChanged = (city) => {
-    if(city.value > -1){
-      //should elevate this to the top
-      this.props.selectedCityChanged(city, this.props.weather.data[this.props.cities.currentCity.value]);
-    }else{
-      this.props.popNewCity();
+    if(city.value != this.props.cities.currentCity.value){
+      if(city.value > -1){
+        //should elevate this to the top
+        this.props.selectedCityChanged(city, this.props.weather.data[this.props.cities.currentCity.value]);
+      }else{
+        this.props.popNewCity();
+      }
     }
+  }
+  manageCity = () => {
+    
   }
 }
 
