@@ -16,7 +16,7 @@ export class DropDown extends Component {
     if(!this.state.opened){
       content = <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}><Text style={[Styles.textDefault]}>{this.props.selected.text}</Text><Icon name="ios-arrow-down" style={{color: '#3E3A55', fontSize: 24, marginLeft: 10, marginTop: 5}} /></View>
     }else{
-      content = <ListView_ data={this.props.data} itemSelected={this.itemSelected} selected={this.props.selected} />;
+      content = <ListView_ longPressHandler={this.props.longPress} data={this.props.data} itemSelected={this.itemSelected} selected={this.props.selected} />;
     }
     return (
       <TouchableOpacity style={[Styles.container,]} onPress={this.toggleList} onBlur={this.toggleList}>

@@ -7,6 +7,7 @@ import {Cities} from './Cities';
 import {NewCity} from './NewCity';
 import {connect} from 'react-redux';
 import {Actions} from './../../services';
+import {CityManager} from './CityManager';
 
 export class _ConfigPopUp extends Component {
   constructor (props) {
@@ -52,6 +53,7 @@ export class _ConfigPopUp extends Component {
     }
     return (
       <View style={{flex: 1, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#0006'}} >
+        <CityManager ToggleCityManager={this.props.ToggleCityManager} enabled={this.props.cityManager} />
         {show}
       </View>
     )
@@ -89,6 +91,10 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = (dispatch) => ({
   closeAddCityModal : () => {
     dispatch(Actions.ToggleCityModal(false))
+  },
+  ToggleCityManager: (city) => {
+    console.log('longP', city);
+    dispatch(Actions.ToggleCityManager())
   }
 })
 

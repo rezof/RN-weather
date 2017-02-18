@@ -9,7 +9,7 @@ export class DropDownItem extends Component {
     let view = <View><Text style={{color: 'white', backgroundColor: 'transparent'}}>no type</Text></View>;
     if(typeof(data) == "object"){
       const isSelected = (data.value == selected.value && data.text == selected.text) ? true : false
-      view = <ObjectItem isSelected={isSelected} data={data} pressHandler={pressHandler}/>
+      view = <ObjectItem longPress={this.props.longPressHandler} isSelected={isSelected} data={data} pressHandler={pressHandler}/>
     }else if(["string", "number"].indexOf(typeof(data)) > -1){
       const isSelected = (selected.text == data) ? true : false;
       view = <TextItem isSelected={isSelected} data={data} pressHandler={pressHandler}/>

@@ -16,14 +16,13 @@ export class ListView_ extends Component {
     };
   }
   render() {
-    setTimeout(this.measureDropdown);
     return (
       <ListView
         style={{width: 200, height: 200}}
         ref="dropdown"
         style={[Styles.absolute, ]}
         dataSource={this.state.dataSource}
-        renderRow={(rowData) => <DropDownItem selected={this.props.selected} data={rowData} pressHandler={this.props.itemSelected} />}
+        renderRow={(rowData) => <DropDownItem longPressHandler={this.props.longPressHandler} selected={this.props.selected} data={rowData} pressHandler={this.props.itemSelected} />}
       />
     )
   }

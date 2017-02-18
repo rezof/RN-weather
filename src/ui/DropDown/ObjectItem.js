@@ -4,19 +4,23 @@ import {View, Text, TouchableOpacity ,StyleSheet, Platform} from 'react-native';
 export class ObjectItem extends Component{
   render() {
     let selected;
+    let {data} = this.props;
     if(this.props.isSelected){
       selected = Styles.selected;
     }
     return (
-      <TouchableOpacity onPress={this.pressHandler} style={[Styles.container, this.props.style]}>
+      <TouchableOpacity onLongPress={() => this.onLongPress(data)} onPress={this.pressHandler} style={[Styles.container, this.props.style]}>
         <View style={Styles.textContainer}>
-          <Text style={[Styles.textDefault, selected]}>{this.props.data.text}</Text>
+          <Text style={[Styles.textDefault, selected]}>{data.text}</Text>
         </View>
       </TouchableOpacity>
     )
   }
   pressHandler = () => {
     this.props.pressHandler(this.props.data);
+  }
+  onLongPress = (city) => {
+    this.props.longPress(city)
   }
 }
 

@@ -8,14 +8,15 @@ export const dbAPI = {
       console.log('saved weather', msg, err);
     })
   },
-  saveAllData(data){
-    AsyncStorage.mergeItem('weatherApp', JSON.stringify({...data}), function(msg, err){
-      if(err){
-        console.log('failed to save', err);
-      }else{
-        console.log('saved', msg)
-      }
-    })
+  saveAllData(data, callback){
+    console.log('save all', JSON.stringify({...data}))
+    // AsyncStorage.mergeItem('weatherApp', JSON.stringify({...data}), function(msg, err){
+    //   if(err){
+    //     console.log('failed to save', err);
+    //   }else{
+    //     console.log('saved', msg)
+    //   }
+    // })
   },
   loadData() {
     // AsyncStorage.clear(() => {});
@@ -64,6 +65,26 @@ export const dbAPI = {
       }else{
         console.log('saved', msg)
       }
+    })
+  },
+  deleteCity(city) {
+    return ((dispatch, getState) => {
+      let {cities: oldCities, weather: oldWeather, uiState, config} = getState();
+      let {cities, currentCity: oldCurrentCity, SearchResults, searchTerm} = oldCities;
+      let weather = {};
+      let newCities = {};
+      let currentCity = oldCurrentCity;
+      Object.keys(oldWeather.data).filter((c) => {
+         if(c != city.value) weather[c] = oldWeather.data[c];
+      })
+      Object.keys(cities).forEach((key) => {
+        if(!(cities[key] && cities[key].value == city.value)) newCities[key] = cities[key];
+      })
+      if(currentCity.value == city.value){
+        currentCity = newCities[0]
+      }
+      // this.saveAllData({weather, cities: {cities: newCities, SearchResults, searchTerm, currentCity}});
+      dispatch(Actions.loadData({cities: {cities: newCities, currentCity, SearchResults, searchTerm}, weather, uiState, config}));
     })
   }
 }
