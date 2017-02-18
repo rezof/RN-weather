@@ -56,6 +56,10 @@ export const CitySearchReset = () => {
   return createAction(types.CITY_SEARCH_RESET)();
 }
 
+export const ToggleCityManager = (managedCity) => {
+  return createAction(types.TOGGLE_CITY_MANAGER)({managedCity});
+}
+
 // export const DynamicAction = (type, payload) => {
 //   return createAction(type)(payload);
 // }

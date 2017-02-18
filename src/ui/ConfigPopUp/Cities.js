@@ -12,7 +12,7 @@ export class _Cities extends Component {
           <Text style={Styles.TextDefault, {fontSize: 15, color: '#C1BBEB',}}>Location</Text>
         </View>
         <View style={{flex: 1}}>
-          <DropDown longPress={this.manageCity} data={[...this.props.cities.cities, {text:'add new city', value: -1}]} selected={this.props.cities.currentCity} selectedChanged={this.cityChanged} />
+          <DropDown longPress={this.props.ToggleCityManager} data={[...this.props.cities.cities, {text:'add new city', value: -1}]} selected={this.props.cities.currentCity} selectedChanged={this.cityChanged} />
         </View>
       </View>
     )
@@ -26,9 +26,6 @@ export class _Cities extends Component {
         this.props.popNewCity();
       }
     }
-  }
-  manageCity = () => {
-    
   }
 }
 
@@ -55,6 +52,9 @@ const mapActionsToProps = (dispatch) => ({
   popNewCity: () => {
     dispatch(Actions.ToggleCityModal(true));
     dispatch(Actions.CitySearchReset());
+  },
+  ToggleCityManager: (city) => {
+    dispatch(Actions.ToggleCityManager(city))
   }
 })
 
