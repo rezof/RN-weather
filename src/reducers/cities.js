@@ -9,7 +9,6 @@ const defaultState = {
 export const cities = (state = defaultState, {type, payload}) => {
   switch(type){
     case types.LOAD_DATA:
-      console.log('LOAD_DATA cities', payload);
       let {cities, currentCity} = payload.cities;
       return {...state, cities: Object.values(cities), currentCity: currentCity};
     case types.ADD_CITY:

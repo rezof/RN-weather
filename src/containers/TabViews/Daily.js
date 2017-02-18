@@ -5,6 +5,7 @@ import {
   View,
   Text,
   ListView,
+  RefreshControl,
   StyleSheet,
 } from 'react-native';
 import {WeatherListViewRow, TopSection} from './../../ui';
@@ -18,6 +19,7 @@ export class Daily extends Component{
 
   render () {
     let {ds} = this.state;
+    let {refreshing} = this.props || false;
     const dataSource = ds.cloneWithRows(this.props.data)
     return (
       <View style={{flex: 1,backgroundColor: '#0A091D'}}>
@@ -27,7 +29,7 @@ export class Daily extends Component{
             refreshControl={
               <RefreshControl
                 tintColor="transparent"
-                refreshing={this.props.refreshing}
+                refreshing={!!refreshing}
               />
             }
             enableEmptySections

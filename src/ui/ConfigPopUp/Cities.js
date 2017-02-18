@@ -6,6 +6,7 @@ import {Actions, API, dbAPI} from './../../services';
 
 export class _Cities extends Component {
   render() {
+    console.log('cities rendered', this.props.cities);
     return (
       <View style={{flex: 5, justifyContent: 'center', alignItems: 'center'}}>
         <View style={{flex: 1, justifyContent: 'flex-end'}}>

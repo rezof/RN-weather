@@ -16,19 +16,17 @@ export class ListView_ extends Component {
     };
   }
   render() {
+    let dataSource = this.state.dataSource.cloneWithRows(this.props.data);
     return (
       <ListView
         style={{width: 200, height: 200}}
         ref="dropdown"
         style={[Styles.absolute, ]}
-        dataSource={this.state.dataSource}
+        dataSource={dataSource}
         renderRow={(rowData) => <DropDownItem longPressHandler={this.props.longPressHandler} selected={this.props.selected} data={rowData} pressHandler={this.props.itemSelected} />}
       />
     )
   }
-  // componentWillMount() {
-  //
-  // }
   measureDropdown = () => {
     dropdown = this.refs['dropdown'];
     const handle = findNodeHandle(dropdown);

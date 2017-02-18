@@ -93,7 +93,6 @@ const mapActionsToProps = (dispatch) => ({
     dispatch(Actions.ToggleCityModal(false))
   },
   ToggleCityManager: (city) => {
-    console.log('longP', city);
     dispatch(Actions.ToggleCityManager())
   }
 })
