@@ -40,7 +40,7 @@ export class _TabView extends Component {
   render() {
     const CustomTabBar_ = (
       <CustomTabBar
-        style={{ backgroundColor: '#131020', marginBottom: -1, height: 50 }}
+        style={{ backgroundColor: '#131020', marginBottom: -1, height: 55 }}
         ref="CustomTabBar"
         underlineStyle={{ backgroundColor: '#5BFFE3' }}
         inactiveTextColor={"#84809D"}

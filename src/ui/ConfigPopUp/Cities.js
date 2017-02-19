@@ -22,7 +22,7 @@ export class _Cities extends Component {
     if(city.value != this.props.cities.currentCity.value){
       if(city.value > -1){
         //should elevate this to the top
-        this.props.selectedCityChanged(city, this.props.weather.data[this.props.cities.currentCity.value]);
+        this.props.selectedCityChanged(city);
       }else{
         this.props.popNewCity();
       }
@@ -45,9 +45,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = (dispatch) => ({
-  selectedCityChanged: (city, data) => {
+  selectedCityChanged: (city) => {
     dispatch(Actions.ChangeCurrentCity(city))
-    dispatch(API.CheckCityWeather(city, data))
+    dispatch(API.CheckCityWeather(city))
     dbAPI.setCurrentCity(city);
   },
   popNewCity: () => {

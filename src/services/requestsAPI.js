@@ -30,14 +30,19 @@ export const searchCities = (term) => (dispatch) => {
   .catch(err => {dispatch(Actions.CitySearchRequest(false)); console.warn('searching for cities failed')});
 }
 
-export const addCity = (cityName) => (dispatch) => {
+export const addCity = (cityName) => (dispatch, getState) => {
+  let {cities: {cities}} = getState();
   Get(`${GEOBYTES_API_URL}/GetCityDetails?fqcn=${encodeURI(cityName)}`)
     .then(resp => resp.json())
     .then(data => {
       const newCity = {text: data.geobytescity, value: data.geobytescityid, latitude: data.geobyteslatitude, longitude: data.geobyteslongitude}
-      dispatch(Actions.AddCity(newCity))
-      dbAPI.addCity(newCity)
-      fetchCityWeather(newCity)(dispatch);
+      if(cities.filter((c) => {return c.value == newCity.value}).length == 0){
+        dispatch(Actions.AddCity(newCity))
+        dbAPI.addCity(newCity)
+        fetchCityWeather(newCity)(dispatch);
+      }else{
+        dispatch(Actions.ChangeCurrentCity(newCity))
+      }
     })
     .catch(err => console.warn("fetching city failed", err))
 }

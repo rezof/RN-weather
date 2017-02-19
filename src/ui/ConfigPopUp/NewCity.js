@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, StyleSheet, ListView, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, Modal, TouchableOpacity, ListView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions} from './../../services';
 import {API} from './../../services';
@@ -11,26 +11,38 @@ export class _NewCity extends Component {
     this.state = {ds : new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})}
   }
   render() {
-    let {ds} = this.state;
+    let {ds, showContent} = this.state;
     const SearchResults = ds.cloneWithRows(this.props.SearchResults);
-    return (
-      <View style={{position: 'absolute', backgroundColor: 'rgba(0, 0, 0, 0.5)', top: 20, left: 0, right: 0, bottom: 0}}>
-        <View style={{flex:1, flexDirection: 'row', paddingBottom: 0, backgroundColor: 'black'}}>
-          <View style={{flex: 5, paddingTop: 10, paddingLeft: 10}}>
-            <TextInput underlineColorAndroid="transparent" style={{color: 'black', height: 40, backgroundColor: 'white', paddingLeft: 15, borderRadius: 20}} placeholder="city name" value={this.props.searchTerm} onChangeText={this.handleSearchTermChange} />
+    let content;
+    if(showContent)
+      content = (
+        <View style={{flex:1, backgroundColor: 'transparent'}}>
+          <View style={{minHeight:60, flex: 1, flexDirection: 'row', paddingBottom: 0, backgroundColor: 'black'}}>
+            <View style={{flex: 5, paddingLeft: 10, justifyContent: 'center'}}>
+              <TextInput underlineColorAndroid="transparent" style={{color: 'black', height: 40, backgroundColor: 'white', paddingLeft: 15, borderRadius: 20}} placeholder="city name" value={this.props.searchTerm} onChangeText={this.handleSearchTermChange} />
+            </View>
+            <TouchableOpacity style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} onPress={() => this.props.cancel()}>
+              <Text style={{color: 'white'}}>close</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} onPress={() => this.props.cancel()}>
-            <Text style={{color: 'white'}}>close</Text>
-          </TouchableOpacity>
+          <View style={{flex:9, opacity: 1}}>
+            <ListView
+              enableEmptySections
+              dataSource={SearchResults}
+              renderRow={(row) => <CitySearchListViewRow data={row} citySelected={this.props.CitySelected} />}
+               />
+          </View>
         </View>
-        <View style={{flex:9, height: 200}}>
-          <ListView
-            enableEmptySections
-            dataSource={SearchResults}
-            renderRow={(row) => <CitySearchListViewRow data={row} citySelected={this.props.CitySelected} />}
-             />
-        </View>
-      </View>
+      );
+    return (
+      <Modal
+        onRequestClose={()=>{}}
+        animationType="slide"
+        visible={this.props.visible}
+        onShow={() => {this.setState({showContent: true})}}
+        >
+        {content}
+      </Modal>
     )
   }
   handleSearchTermChange = (val) => {

@@ -31,9 +31,10 @@ export class _ConfigPopUp extends Component {
     const height = Math.floor(this.props.height);
     const {width} = this.props;
     const {transitionOpacity} = this.state;
-    let show;
-    if(!this.props.showCityModal){
-      show = (
+    return (
+      <View
+        style={{flex: 1, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#0006'}} >
+        <CityManager ToggleCityManager={this.props.ToggleCityManager} enabled={this.props.cityManager} />
         <Animated.View style={{position: 'absolute', bottom: 55, height, width, backgroundColor:'black',  opacity: transitionOpacity}} >
           <View style={{flex: 1, flexDirection: 'row',}}>
             <Cities />
@@ -45,16 +46,7 @@ export class _ConfigPopUp extends Component {
             </View>
           </View>
         </Animated.View>
-      );
-    }else{
-      show = (
-        <NewCity cancel={this.props.closeAddCityModal} />
-      )
-    }
-    return (
-      <View style={{flex: 1, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#0006'}} >
-        <CityManager ToggleCityManager={this.props.ToggleCityManager} enabled={this.props.cityManager} />
-        {show}
+        <NewCity visible={this.props.showCityModal} cancel={this.props.closeAddCityModal} />
       </View>
     )
   }

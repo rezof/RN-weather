@@ -40,19 +40,21 @@ export const CustomTabBar = React.createClass({
     const textColor = isTabActive ? activeTextColor : inactiveTextColor;
     const fontWeight = isTabActive ? 'bold' : 'normal';
 
-    return <Button
-      style={{flex: 1}}
-      key={name}
-      accessible={true}
-      accessibilityLabel={name}
-      accessibilityTraits='button'
-      onPress={() => onPressHandler(page)} >
-      <View style={[styles.tab, this.props.tabStyle, ]}>
-        <Text style={[{color: textColor, fontWeight}, textStyle, {paddingTop: 5}]}>
-          {name}
-        </Text>
-      </View>
-    </Button>;
+    return (
+      <Button
+        style={{flex: 1}}
+        key={name}
+        accessible={true}
+        accessibilityLabel={name}
+        accessibilityTraits='button'
+        onPress={() => onPressHandler(page)} >
+        <View style={[styles.tab, this.props.tabStyle, ]}>
+          <Text style={[{color: textColor, fontWeight}, textStyle, {paddingTop: 5}]}>
+            {name}
+          </Text>
+        </View>
+      </Button>
+    );
   },
 
   render() {
@@ -70,7 +72,7 @@ export const CustomTabBar = React.createClass({
       inputRange: [0, 1, ], outputRange: [0,  containerWidth / numberOfTabs, ],
     });
     return (
-      <View style={[this.props.style, styles.tabs]}>
+      <View style={[styles.tabs, this.props.style]}>
         {this.props.tabs.map((name, page) => {
           const isTabActive = this.props.activeTab === page;
           const renderTab = this.props.renderTab || this.renderTab;
