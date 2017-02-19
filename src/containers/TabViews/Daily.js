@@ -28,6 +28,7 @@ export class Daily extends Component{
           <ListView
             refreshControl={
               <RefreshControl
+                onRefresh={() => this.props.onRefresh()}
                 tintColor="transparent"
                 refreshing={!!refreshing}
               />

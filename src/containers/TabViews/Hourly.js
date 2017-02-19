@@ -21,6 +21,7 @@ export class Hourly extends Component{
               refreshControl={
                 <RefreshControl
                   tintColor="transparent"
+                  onRefresh={() => this.props.onRefresh()}
                   refreshing={!!refreshing}
                 />
               }

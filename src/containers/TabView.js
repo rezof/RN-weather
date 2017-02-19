@@ -61,8 +61,8 @@ export class _TabView extends Component {
       <View style={Styles.container}>
         <ScrollableTabView tabBarPosition="bottom"
           renderTabBar={ () => CustomTabBar_ } >
-          <Hourly refreshing={this.props.uistate.refreshing} tabLabel="HOURLY" data={hourly}/>
-          <Daily refreshing={this.props.uistate.refreshing} tabLabel="DAILY" data={daily}/>
+          <Hourly onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} refreshing={this.props.uistate.refreshing} tabLabel="HOURLY" data={hourly}/>
+          <Daily onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} refreshing={this.props.uistate.refreshing} tabLabel="DAILY" data={daily}/>
         </ScrollableTabView>
         {PopUp}
      </View>
