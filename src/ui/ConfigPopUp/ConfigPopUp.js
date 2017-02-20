@@ -31,6 +31,9 @@ export class _ConfigPopUp extends Component {
     const height = Math.floor(this.props.height);
     const {width} = this.props;
     const {transitionOpacity} = this.state;
+    if(!this.props.ShowPopUp){
+      return null
+    }
     return (
       <View
         style={{flex: 1, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#0006'}} >
@@ -46,7 +49,7 @@ export class _ConfigPopUp extends Component {
             </View>
           </View>
         </Animated.View>
-        <NewCity visible={this.props.showCityModal} cancel={this.props.closeAddCityModal} />
+        <NewCity visible={this.props.showCityModal} cancel={this.props.closeCityModal} />
       </View>
     )
   }
@@ -81,11 +84,14 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = (dispatch) => ({
-  closeAddCityModal : () => {
+  closeCityModal : () => {
     dispatch(Actions.ToggleCityModal(false))
   },
   ToggleCityManager: (city) => {
     dispatch(Actions.ToggleCityManager())
+  },
+  closePopUp: () => {
+    dispatch(Actions.ToggleConfigPopUp());
   }
 })
 

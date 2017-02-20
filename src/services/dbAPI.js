@@ -9,13 +9,13 @@ export const dbAPI = {
     })
   },
   saveAllData(data, callback){
-    AsyncStorage.mergeItem('weatherApp', JSON.stringify({...data}), function(msg, err){
-      if(err){
-        console.log('failed to save', err);
-      }else{
-        console.log('saved', msg)
-      }
-    })
+    // AsyncStorage.mergeItem('weatherApp', JSON.stringify({...data}), function(msg, err){
+    //   if(err){
+    //     console.log('failed to save', err);
+    //   }else{
+    //     console.log('saved', msg)
+    //   }
+    // })
   },
   loadData() {
     // AsyncStorage.clear(() => {});
@@ -26,7 +26,7 @@ export const dbAPI = {
           console.log('loaded data', data);
           dispatch(Actions.loadData(data));
         }else {
-          console.log('no data was loaded');
+          dispatch(Actions.ToggleCityModal());
         }
       })
     })

@@ -9,10 +9,18 @@ const defaultState = {
 export const cities = (state = defaultState, {type, payload}) => {
   switch(type){
     case types.LOAD_DATA:
-      let {cities, currentCity} = payload.cities;
+      const {cities, currentCity} = payload.cities;
       return {...state, cities: Object.values(cities), currentCity: currentCity};
     case types.ADD_CITY:
       return {...state, cities: [...state.cities, payload], currentCity: payload}
+    case types.TOGGLE_CITY_MODAL:
+      const showCityModal = payload;
+      let {SearchResults , searchTerm} = state;
+      if(!showCityModal){
+        SearchResults = [];
+        searchTerm = '';
+      }
+      return {...state, SearchResults, searchTerm};
     case types.CURRENT_CITY_CHANGE:
       return {...state, currentCity: payload}
     case types.CITY_SEARCH_CHANGE:

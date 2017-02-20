@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {View, ListView, RefreshControl} from 'react-native';
+import {connect} from 'react-redux';
 import {WeatherListViewRow, TopSection} from './../../ui';
 
-export class Hourly extends Component{
+class _Hourly extends Component{
   constructor () {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -32,5 +33,10 @@ export class Hourly extends Component{
         </View>
     )
   }
-
 }
+
+const mapStateToProps = (state) => ({
+  ...state.uiState
+})
+
+export const Hourly = connect(mapStateToProps)(_Hourly);

@@ -24,19 +24,15 @@ export class _TabView extends Component {
     }
   }
   componentWillMount() {
-    // setInterval(() => {
-    //
-    // }, 60000);
-    setTimeout(() => {
+    setInterval(() => {
       const {currentCity} = this.props.cities;
       const data = Utils.filterOutDatedData(this.props.weather.data);
       if(currentCity && !data[currentCity.value] || (data[currentCity.value].hourly.data.length <= 42) || (data[currentCity.value].daily.data.length < 7)){
         console.log('fetching', currentCity)
         this.props.fetchWeatherForCity(currentCity);
       }
-    }, 3000);
+    }, 60000);
   }
-
   render() {
     const CustomTabBar_ = (
       <CustomTabBar
@@ -45,12 +41,8 @@ export class _TabView extends Component {
         underlineStyle={{ backgroundColor: '#5BFFE3' }}
         inactiveTextColor={"#84809D"}
         activeTextColor={"#fff"}
-        menuClickHandler= {this.ToggleConfigPopUp}
+        menuClickHandler= {this.props.ToggleConfigPopUp}
     />);
-    let PopUp;
-    if(this.props.uistate.ShowPopUp){
-      PopUp = <ConfigPopUp closePopUp={this.ToggleConfigPopUp} height={height/3} width={width} />
-    }
     const {currentCity} = this.props.cities;
     let hourly = daily = [];
     if(currentCity && currentCity.value && this.props.weather.data[currentCity.value]){
@@ -61,17 +53,12 @@ export class _TabView extends Component {
       <View style={Styles.container}>
         <ScrollableTabView tabBarPosition="bottom"
           renderTabBar={ () => CustomTabBar_ } >
-          <Hourly onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} refreshing={this.props.uistate.refreshing} tabLabel="HOURLY" data={hourly}/>
-          <Daily onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} refreshing={this.props.uistate.refreshing} tabLabel="DAILY" data={daily}/>
+          <Hourly onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} tabLabel="HOURLY" data={hourly}/>
+          <Daily onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} tabLabel="DAILY" data={daily}/>
         </ScrollableTabView>
-        {PopUp}
+        <ConfigPopUp height={height/3} width={width} />
      </View>
-
       );
-    }
-    ToggleConfigPopUp = () => {
-      const {ToggleConfigPopUp, uistate: {ShowPopUp}} = this.props;
-      ToggleConfigPopUp(!ShowPopUp)
     }
 }
 
@@ -89,10 +76,8 @@ const Styles = StyleSheet.create({
 
 mapStateToProps = (state) => {
   return {
-    uistate: state.uiState,
     weather: state.weather,
-    cities: state.cities,
-    config: state.config
+    cities: state.cities
   }
 }
 
@@ -100,8 +85,8 @@ mapActionsToProps = (dispatch) => ({
   loadState : () => {
     dispatch(dbAPI.loadData());
   },
-  ToggleConfigPopUp: (payload) => {
-    dispatch({type: "TOGGLE_CONFIG_POPUP", payload});
+  ToggleConfigPopUp: () => {
+    dispatch(Actions.ToggleConfigPopUp())
   },
   updateWeatherData : (data) => {
     dispatch(Actions.WeatherDataFiltered(data));
@@ -109,6 +94,9 @@ mapActionsToProps = (dispatch) => ({
   },
   fetchWeatherForCity : (city) => {
     dispatch(API.fetchCityWeather(city));
+  },
+  newCity: () => {
+    dispatch(Actions.ToggleCityModal(true));
   }
 })
 

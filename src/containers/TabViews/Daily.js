@@ -8,9 +8,10 @@ import {
   RefreshControl,
   StyleSheet,
 } from 'react-native';
+import {connect} from 'react-redux';
 import {WeatherListViewRow, TopSection} from './../../ui';
 
-export class Daily extends Component{
+export class _Daily extends Component{
   constructor () {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -41,3 +42,9 @@ export class Daily extends Component{
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  ...state.uiState
+})
+
+export const Daily = connect(mapStateToProps)(_Daily);
