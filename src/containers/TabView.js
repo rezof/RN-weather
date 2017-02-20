@@ -4,6 +4,7 @@ import {
   Text,
   Dimensions,
   StyleSheet,
+  Platform,
   AsyncStorage
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
@@ -28,7 +29,6 @@ export class _TabView extends Component {
       const {currentCity} = this.props.cities;
       const data = Utils.filterOutDatedData(this.props.weather.data);
       if(currentCity && !data[currentCity.value] || (data[currentCity.value].hourly.data.length <= 42) || (data[currentCity.value].daily.data.length < 7)){
-        console.log('fetching', currentCity)
         this.props.fetchWeatherForCity(currentCity);
       }
     }, 60000);
@@ -64,7 +64,12 @@ export class _TabView extends Component {
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        marginTop: 20
+      }
+    })
   },
   TextDefault: {
     fontSize: 20,

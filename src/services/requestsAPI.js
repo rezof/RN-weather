@@ -56,6 +56,7 @@ const fetchCityWeather = ({text, longitude, latitude, value}) => (dispatch) => {
   Get(`${DS_API_URL}/${DS_KEY}/${latitude},${longitude}`, headers)
   .then(resp => resp.json())
   .then(data => {
+    console.log(`got data for city ${text}`, data);
     let cityData = {}
     cityData[value] = data
     dispatch(Actions.weatherFetchingComplete(cityData))
