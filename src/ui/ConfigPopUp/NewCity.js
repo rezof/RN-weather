@@ -16,7 +16,7 @@ export class _NewCity extends Component {
     let content;
     if(showContent)
       content = (
-        <View style={{flex:1, backgroundColor: 'transparent'}}>
+        <View style={{flex:1, marginTop: 20}}>
           <View style={{minHeight:60, flex: 1, flexDirection: 'row', paddingBottom: 0, backgroundColor: 'black'}}>
             <View style={{flex: 5, paddingLeft: 10, justifyContent: 'center'}}>
               <TextInput underlineColorAndroid="transparent" style={{color: 'black', height: 40, backgroundColor: 'white', paddingLeft: 15, borderRadius: 20}} placeholder="city name" value={this.props.searchTerm} onChangeText={this.handleSearchTermChange} />
