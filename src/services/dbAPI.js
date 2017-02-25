@@ -9,7 +9,7 @@ export const dbAPI = {
     })
   },
   saveAllData(data, callback){
-    AsyncStorage.mergeItem('weatherApp', JSON.stringify({...data}), function(msg, err){
+    AsyncStorage.setItem('weatherApp', JSON.stringify({...data}), function(msg, err){
       if(err){
         console.log('failed to save', err);
       }else{
@@ -66,8 +66,7 @@ export const dbAPI = {
   },
   deleteCity(city) {
     return ((dispatch, getState) => {
-      let {cities: oldCities, weather: oldWeather, uiState, config} = getState();
-      let {cities, currentCity: oldCurrentCity, SearchResults, searchTerm} = oldCities;
+      let {cities: {cities, currentCity: oldCurrentCity, SearchResults, searchTerm}, weather: oldWeather, uiState, config} = getState();
       let weather = {};
       let newCities = {};
       let currentCity = {};
@@ -75,20 +74,22 @@ export const dbAPI = {
          if(c != city.value)
             weather[c] = oldWeather.data[c];
       })
+
       Object.keys(cities).forEach((key) => {
         if(!(cities[key] && cities[key].value == city.value)){
-            newCities[Object.keys(newCities).length] = cities[key];
+            var value = cities[key].value;
+            newCities[value] = cities[key];
         }
       })
       if(Object.keys(newCities).length > 0){
         if(oldCurrentCity.value == city.value){
-          currentCity = newCities[0]
+          currentCity = newCities[Object.keys(newCities)[0]];
         }else if(oldCurrentCity.value != city.value){
-          currentCity = oldCurrentCity
+          currentCity = oldCurrentCity;
         }
       }
-      this.saveAllData({weather, cities: {cities: newCities, SearchResults, searchTerm, currentCity}});
-      dispatch(Actions.loadData({cities: {cities: newCities, currentCity, SearchResults, searchTerm}, weather, uiState, config}));
+      this.saveAllData({weather, cities: {cities: newCities, SearchResults, searchTerm, currentCity}, config});
+      dispatch(Actions.loadData({weather, cities: {cities: newCities, currentCity, SearchResults, searchTerm}, uiState, config}));
       dispatch(Actions.ToggleCityManager());
     })
   }

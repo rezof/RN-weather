@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Modal, TouchableOpacity, ListView, StyleSheet, Platform} from 'react-native';
+import {View, Text, TextInput, Modal, TouchableOpacity, ListView, StyleSheet, Platform, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions} from './../../services';
 import {API} from './../../services';
@@ -64,9 +64,11 @@ export class _NewCity extends Component {
   }
 }
 
+const {height} = Dimensions.get('window')
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
+    height,
     backgroundColor: '#212B3C',
     ...Platform.select({
       ios: {
@@ -75,7 +77,7 @@ const Styles = StyleSheet.create({
     })
   },
   searchBar: {
-    minHeight:40,
+    minHeight:60,
     flex: 1,
     flexDirection: 'row'
   },
@@ -111,10 +113,10 @@ const Styles = StyleSheet.create({
     alignItems:'center',
     height: 50,
     borderBottomWidth: 1/2,
-    borderColor: 'black'
+    borderColor: '#B9BCC3'
   },
   cityRowText: {
-    color: 'rgba(255, 255, 249, 0.7)',
+    color: '#B9BCC3',
     backgroundColor: 'transparent'
   }
 })

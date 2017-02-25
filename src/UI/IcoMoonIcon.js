@@ -6,6 +6,6 @@ const Icon = createIconSetFromIcoMoon(icoMoonConfig);
 
 
 export const IcoMoon = (props) => {
-  // Icon.getImageSource('props.name', 20, 'white');
+  Icon.getImageSource('user', 20, 'red').then((source) => {});
   return <Icon name={props.name} style={[{color: "white", backgroundColor: "transparent", fontSize: 20}, props.style]}/>
 }

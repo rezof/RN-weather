@@ -56,7 +56,7 @@ export class _TabView extends Component {
           <Hourly onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} tabLabel="HOURLY" data={hourly}/>
           <Daily onRefresh={() => {this.props.fetchWeatherForCity(currentCity)}} tabLabel="DAILY" data={daily}/>
         </ScrollableTabView>
-        <ConfigPopUp height={height/3} width={width} />
+        <ConfigPopUp />
      </View>
       );
     }

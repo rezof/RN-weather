@@ -4,6 +4,7 @@ export const weather = (state = {data: {}}, {type, payload}) => {
   switch (type){
     case types.LOAD_DATA :
       const data = payload.weather || {};
+      console.log('LOAD_DATA weather', data)
       return {data: {...state.data, ...data}};
     case types.FILTER_WEATHER_COMPLETE :
       return {data: {...payload}};

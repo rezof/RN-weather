@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import {View, Text, TouchableHighlight, StyleSheet, Animated} from 'react-native';
+import {View, Text, TouchableHighlight, StyleSheet, Animated, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {DropDown} from './../DropDown';
 import {Temperature} from './Temperature';
@@ -28,17 +28,15 @@ export class _ConfigPopUp extends Component {
      }
   }
   render () {
-    const height = Math.floor(this.props.height);
-    const {width} = this.props;
     const {transitionOpacity} = this.state;
     if(!this.props.ShowPopUp){
       return null
     }
     return (
       <View
-        style={{flex: 1, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: '#0006'}} >
+        style={{flex: 1, position: 'absolute', left: 0, right: 0, backgroundColor: '#0006', height}} >
         <CityManager ToggleCityManager={this.props.ToggleCityManager} enabled={this.props.cityManager} />
-        <Animated.View style={{position: 'absolute', bottom: 55, height, width, backgroundColor:'black',  opacity: transitionOpacity}} >
+        <Animated.View style={[Styles.configView, {opacity: transitionOpacity}]} >
           <View style={{flex: 1, flexDirection: 'row',}}>
             <Cities />
             <Temperature />
@@ -56,6 +54,7 @@ export class _ConfigPopUp extends Component {
 
 }
 
+const {height, width} = Dimensions.get('window');
 const Styles = StyleSheet.create({
   tab: {
     flex: 1,
@@ -71,6 +70,13 @@ const Styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderColor: '#ccc',
+  },
+  configView: {
+    position: 'absolute',
+    bottom: 75,
+    height: height/3,
+    width,
+    backgroundColor: 'black'
   },
   TextDefault: {
     fontSize: 20,

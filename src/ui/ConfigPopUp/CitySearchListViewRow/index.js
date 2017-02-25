@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 export const CitySearchListViewRow = (props = {data: 'no text provided'}) => {
-  let {index, data, textStyle, style} = props;
+  let {index, data, textStyle, style, citySelected} = props;
 
   return (
     <Animatable.View delay={index * 20} animation="fadeInUp">

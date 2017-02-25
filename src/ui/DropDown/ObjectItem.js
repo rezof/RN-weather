@@ -20,7 +20,9 @@ export class ObjectItem extends Component{
     this.props.pressHandler(this.props.data);
   }
   onLongPress = (city) => {
-    this.props.longPress(city)
+    if(city.value != -1){
+      this.props.longPress(city)
+    }
   }
 }
 

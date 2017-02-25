@@ -15,8 +15,8 @@ export const uiState = (state = defaultState, {type, payload}) => {
       const ShowPopUp = !state.ShowPopUp;
       return {...state, ShowPopUp};
     case types.TOGGLE_CITY_MODAL: {
-      let showCityModal = !state.showCityModal;
-      let {ShowPopUp} = state;
+      let {ShowPopUp, showCityModal} = state;
+      showCityModal = !showCityModal;
       if(showCityModal){
         ShowPopUp = true;
       }
@@ -31,10 +31,13 @@ export const uiState = (state = defaultState, {type, payload}) => {
     case types.TOGGLE_CITY_MANAGER: {
       let managedCity = {};
       let cityManager = !state.cityManager;
+      let {ShowPopUp} = state;
       if(cityManager){
-        managedCity = payload.managedCity;
+        managedCity = payload.managedCity || {};
+      }else{
+        ShowPopUp = true;
       }
-      return {...state, cityManager, managedCity}
+      return {...state, cityManager, managedCity, ShowPopUp}
     }
     default:
       return state;
